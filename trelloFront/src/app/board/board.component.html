@@ -1,0 +1,18 @@
+<h1>BlisSrello</h1>
+<section class="section-container">
+  <article class="lists-container">
+
+    <div class="list-element" *ngFor="let list of lists">
+      <p *ngIf="!list.editing" (click)="editList(list)" >{{list.title}}</p>
+      <div *ngIf="list.editing" class="list-form">
+        <input (keyup.enter)="updateList(list)" type="text" [(ngModel)]="list.title">
+        <fa (click)="deleteList(list)" [name]="'trash'"></fa>
+      </div>
+    </div>
+    <div class="list-add">
+      <input placeholder="Title of your new list" type="text" [(ngModel)]="newList.title">
+      <button (click)="addNewList(newList)">AddList</button>
+    </div>
+
+  </article>
+</section>

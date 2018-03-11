@@ -1,0 +1,19 @@
+.lists-container{
+    display: flex;
+    align-items: center;
+}
+.list-element{
+    background-color: lightgray;
+    padding: 0 20px;
+    margin: 10px;
+}
+.list-element p{
+    margin: 0;
+    padding: 0;
+}
+.list-form{
+    display: flex;
+}
+fa{
+    cursor: pointer;
+}
