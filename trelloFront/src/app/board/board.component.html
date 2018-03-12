@@ -8,6 +8,12 @@
         <input (keyup.enter)="updateList(list)" type="text" [(ngModel)]="list.title">
         <fa (click)="deleteList(list)" [name]="'trash'"></fa>
       </div>
+      <div class="cards-container">
+        <app-card [card]="card" *ngFor="let card of list.cards"></app-card>
+        <input #newCard (keyup.enter)="addNewCard(newCard.value, list)" type="text" placeholder="Add card...">
+      </div>
+      
+
     </div>
     <div class="list-add">
       <input placeholder="Title of your new list" type="text" [(ngModel)]="newList.title">

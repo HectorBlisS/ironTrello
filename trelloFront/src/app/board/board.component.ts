@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ListService} from '../services/list.service';
+import {CardService} from '../services/card.service';
 
 @Component({
   selector: 'app-board',
@@ -8,7 +9,8 @@ import {ListService} from '../services/list.service';
 })
 export class BoardComponent implements OnInit {
   constructor(
-    private listService:ListService
+    private listService:ListService,
+    private cardService:CardService
     ) {
   }
   lists;
@@ -16,6 +18,18 @@ export class BoardComponent implements OnInit {
 
   ngOnInit() {
     this.getLists();
+  }
+
+  addNewCard(title,list){
+    const newCard = {
+      title,
+      list:list._id
+    };
+    this.cardService.postNewCard(newCard)
+    .subscribe(card=>{
+      list.cards.push(card);
+      this.updateList(list);
+    })
   }
 
   deleteList(list){
@@ -31,11 +45,13 @@ export class BoardComponent implements OnInit {
     list.editing = false;
     this.listService.updateList(list)
     .subscribe(updatedList=>{
-      console.log(this.lists)
+      //console.log(this.lists)
      this.lists = this.lists.map(l=>{
        if(l._id !== updatedList._id) return l;
         else return updatedList;
      });
+     this.getLists();
+
     })
     
   }
@@ -53,7 +69,7 @@ export class BoardComponent implements OnInit {
     .subscribe(lists=>{
       
       this.lists = lists;
-      console.log(this.lists)
+      //console.log(this.lists)
     });
   }
 

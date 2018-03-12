@@ -4,11 +4,11 @@
 }
 .list-element{
     background-color: lightgray;
-    padding: 0 20px;
+    padding: 0 20px 10px 20px;
     margin: 10px;
 }
 .list-element p{
-    margin: 0;
+    #margin: 0;
     padding: 0;
 }
 .list-form{
