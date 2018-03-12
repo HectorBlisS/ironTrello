@@ -1,0 +1,15 @@
+<section>
+
+
+  <p *ngIf="!list.editing" (click)="editList(list)" >{{list.title}}</p>
+  <div *ngIf="list.editing" class="list-form">
+    <input (keyup.enter)="updateList(list)" type="text" [(ngModel)]="list.title">
+    <fa (click)="deleteList(list)" [name]="'trash'"></fa>
+  </div>
+  <article >
+    <div style="background:lightpink;" [dragula]="'cards'" [dragulaModel]="list.cards" class="cards-container">
+      <app-card [card]="card" *ngFor="let card of list?.cards; let last = last"></app-card>
+      <input #newCard (keyup.enter)="addNewCard(newCard.value, list)" type="text" placeholder="Add card...">
+    </div>
+  </article>
+</section>

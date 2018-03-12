@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import {ListService} from '../services/list.service';
 import {CardService} from '../services/card.service';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 @Component({
   selector: 'app-board',
@@ -10,7 +11,8 @@ import {CardService} from '../services/card.service';
 export class BoardComponent implements OnInit {
   constructor(
     private listService:ListService,
-    private cardService:CardService
+    private cardService:CardService,
+    private toastr:ToastsManager
     ) {
   }
   lists;
@@ -29,6 +31,7 @@ export class BoardComponent implements OnInit {
     .subscribe(card=>{
       list.cards.push(card);
       this.updateList(list);
+      this.toastr.success('Card agregada', 'Genial!!');
     })
   }
 
